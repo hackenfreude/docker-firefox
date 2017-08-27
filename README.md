@@ -17,7 +17,6 @@ This is a container that runs Firefox.
 
 ## WHAT JUST HAPPENED?
 * Docker mounted the host's X socket in the continer as the container's X socket; this allows the container's GUI to pass back up to the host.
-* Docker mounted the host's working directory in the container at the same path.
 
 ## WHAT IF IT DOESN'T WORK?
 Open an [issue](https://github.com/hackenfreude/docker-firefox/issues/new).
