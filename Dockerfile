@@ -1,6 +1,6 @@
 FROM buildpack-deps:stretch-curl as downloader
 
-ARG FIREFOX_VERSION=55.0.3
+ARG FIREFOX_VERSION=56.0.1
 
 ARG FIREFOX_LANGUAGE=en-US
 
