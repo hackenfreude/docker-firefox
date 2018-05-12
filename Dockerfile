@@ -24,7 +24,7 @@ RUN apt-get --quiet update && apt-get --quiet --assume-yes install bzip2
 RUN tar --extract --bzip2 --file linux-x86_64/${FIREFOX_LANGUAGE}/firefox-${FIREFOX_VERSION}.tar.bz2 --directory tmp/
 
 
-FROM ubuntu:16.04 as firefox
+FROM ubuntu:18.04 as firefox
 
 RUN apt-get --quiet update && apt-get --quiet --assume-yes install libgtk-3-0 libdbus-glib-1-2 libxt6 libcanberra-gtk-module libcanberra-gtk3-module tzdata
 
