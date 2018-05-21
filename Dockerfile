@@ -26,7 +26,7 @@ RUN tar --extract --bzip2 --file linux-x86_64/${FIREFOX_LANGUAGE}/firefox-${FIRE
 
 FROM ubuntu:18.04 as firefox
 
-RUN apt-get --quiet update && apt-get --quiet --assume-yes install libgtk-3-0 libdbus-glib-1-2 libxt6 libcanberra-gtk-module libcanberra-gtk3-module tzdata
+RUN apt-get --quiet update && apt-get --quiet --assume-yes install evince libgtk-3-0 libdbus-glib-1-2 libxt6 libcanberra-gtk-module libcanberra-gtk3-module tzdata
 
 COPY --from=downloader /tmp/firefox /usr/lib/firefox
 
