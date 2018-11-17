@@ -6,7 +6,7 @@ ARG FIREFOX_LANGUAGE=en-US
 
 ADD https://archive.mozilla.org/pub/firefox/releases/${FIREFOX_VERSION}/KEY KEY
 
-RUN gpg --import KEY
+RUN gpg --no-tty --import KEY
 
 ADD https://archive.mozilla.org/pub/firefox/releases/${FIREFOX_VERSION}/SHA512SUMS SHA512SUMS
 
