@@ -1,6 +1,6 @@
 FROM buildpack-deps:stretch-curl as downloader
 
-ARG FIREFOX_VERSION=65.0.1
+ARG FIREFOX_VERSION=66.0
 
 ARG FIREFOX_LANGUAGE=en-US
 
@@ -26,9 +26,17 @@ RUN tar --extract --bzip2 --file linux-x86_64/${FIREFOX_LANGUAGE}/firefox-${FIRE
 
 FROM ubuntu:18.04 as firefox
 
-RUN apt-get --quiet update && DEBIAN_FRONTEND=noninteractive apt-get --quiet --assume-yes install evince libgtk-3-0 libdbus-glib-1-2 libxt6 libcanberra-gtk-module libcanberra-gtk3-module tzdata
-
 COPY --from=downloader /tmp/firefox /usr/lib/firefox
+
+RUN apt-get --quiet update && DEBIAN_FRONTEND=noninteractive apt-get --quiet --assume-yes install evince libgtk-3-0 libdbus-glib-1-2 libxt6 libcanberra-gtk-module libcanberra-gtk3-module tzdata libx11-xcb1
+
+RUN apt-get --quiet update && DEBIAN_FRONTEND=noninteractive apt-get --quiet --assume-yes install flashplugin-installer browser-plugin-freshplayer-pepperflash
+
+RUN mkdir --parents /usr/lib/firefox/plugins
+
+RUN cp /usr/lib/flashplugin-installer/libflashplayer.so /usr/lib/firefox/plugins/libflashplayer.so
+
+RUN cp /usr/lib/flashplugin-installer/libflashplayer.so /usr/lib/mozilla/plugins/libflashplayer.so
 
 RUN [ "/usr/lib/firefox/firefox", "-headless", "-CreateProfile", "custom /root/.mozilla/firefox/custom" ]
 
